@@ -13,6 +13,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.configurationLimit = 10; # Limit generation display in grub
 
   networking.hostName = "nixos-nvhantyn"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -32,6 +33,21 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+
+  # Set input method
+  i18n.inputMethod = {
+	  enable = true;
+	  type = "fcitx5";
+	  fcitx5.addons = with pkgs; [
+		  fcitx5-unikey
+	  ];
+  };
+
+  # Font
+  fonts.packages = with pkgs; [
+  	nerd-fonts.fira-code
+	nerd-fonts.jetbrains-mono
+  ];
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -105,11 +121,30 @@
 	wget
 	firefox
 	git
+	github-cli
 	neovim
 	vlc
 	htop
 	unzip
+	bat
+	ripgrep
+	fd
+	solaar # Logitech Devices
+
+	#---------- Compiler ----------#
+	gcc
+
+	#---------- Terminal ----------#
+	alacritty
+
   ];
+
+  # Automatically clear garbages
+  nix.gc = {
+	  automatic = true;
+	  dates = "weekly";
+	  options = "--delete-older-than 7d";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -137,5 +172,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
