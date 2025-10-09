@@ -36,17 +36,17 @@
 
   # Set input method
   i18n.inputMethod = {
-	  enable = true;
-	  type = "fcitx5";
-	  fcitx5.addons = with pkgs; [
-		  fcitx5-unikey
-	  ];
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-unikey
+    ];
   };
 
   # Font
   fonts.packages = with pkgs; [
-  	nerd-fonts.fira-code
-	nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
   ];
 
   i18n.extraLocaleSettings = {
@@ -104,7 +104,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -114,36 +114,49 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Enable flatpak
+  services.flatpak.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	vim 
-	wget
-	firefox
-	git
-	github-cli
-	neovim
-	vlc
-	htop
-	unzip
-	bat
-	ripgrep
-	fd
-	solaar # Logitech Devices
+    vim
+    wget
+    firefox
+    git
+    github-cli
+    neovim
+    vlc
+    htop
+    unzip
+    bat
+    ripgrep
+    fd
+    solaar # Logitech Devices
+    tree-sitter
+    xclip
 
-	#---------- Compiler ----------#
-	gcc
+    #---------- Formatter ----------#
+    stylua
+    black       # for Python
+    rustfmt     # for Rust
+    prettierd   # for web development
+    clang-tools # for C/C++
 
-	#---------- Terminal ----------#
-	alacritty
+    #---------- Dev ----------#
+    gcc # C++
+    nodejs
+
+    #---------- Terminal ----------#
+    alacritty
 
   ];
 
   # Automatically clear garbages
   nix.gc = {
-	  automatic = true;
-	  dates = "weekly";
-	  options = "--delete-older-than 7d";
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
