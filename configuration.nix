@@ -28,8 +28,8 @@
 
   # Default shell
   programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  # users.users.vnhantyn.shell = pkgs.zsh;
+  # users.defaultUserShell = pkgs.zsh;
+  users.users.vnhantyn.shell = pkgs.zsh;
 
   # Bluetooth
   services.blueman.enable = true;
