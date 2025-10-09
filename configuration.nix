@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -15,8 +16,19 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.configurationLimit = 10; # Limit generation display in grub
 
+  # Network
   networking.hostName = "nixos-nvhantyn"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Home manager
+  home-manager.users.vnhantyn = {
+    imports = [ ./home.nix ];
+    home.stateVersion = "25.05";
+  };
+
+  # Default shell
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
   # Bluetooth
   services.blueman.enable = true;
