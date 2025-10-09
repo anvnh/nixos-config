@@ -23,12 +23,13 @@
   # Home manager
   home-manager.users.vnhantyn = {
     imports = [ ./home.nix ];
-    home.stateVersion = "25.05";
+    # home.stateVersion = "25.05";
   };
 
   # Default shell
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+  # users.users.vnhantyn.shell = pkgs.zsh;
 
   # Bluetooth
   services.blueman.enable = true;
@@ -147,6 +148,9 @@
     solaar # Logitech Devices
     tree-sitter
     xclip
+
+    #---------- Terminal -----------#
+    zsh
 
     #---------- Formatter ----------#
     stylua

@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # ----------------------------------------------------
-  # Alacritty config
-  # ----------------------------------------------------
+  home.stateVersion = "25.05";
   programs.alacritty = {
     enable = true;
     settings = {
@@ -14,7 +12,7 @@
         };
         size = 12;
       };
-      window.padding = { x = 10; y = 10; };
+      # window.padding = { x = 10; y = 10; };
       colors = {
         # Theme Dracula
         primary = {
@@ -34,23 +32,10 @@
       };
     };
   };
-
-  # ----------------------------------------------------
-  # Zsh shell config
-  # ----------------------------------------------------
   programs.zsh = {
-    enableCompletion = true;
-    autosuggestion.enable = true;
+    enable = true;
+    oh-my-zsh.enable = false;
     syntaxHighlighting.enable = true;
-
-    shellAliases = {
-      ll = "ls -l";
-      update = "sudo nixos-rebuild switch";
-      ".." = "cd ..";
-    };
-
-    initExtra = ''
-      eval "$(starship init zsh)"
-    '';
+    autosuggestion.enable = true;
   };
 }
