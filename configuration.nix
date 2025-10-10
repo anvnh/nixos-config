@@ -21,18 +21,32 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Home manager
+  home-manager.backupFileExtension = "backup";
   home-manager.users.vnhantyn = {
     imports = [ ./home.nix ];
     # home.stateVersion = "25.05";
   };
 
   # Default shell
-  programs.zsh.enable = true;
   # users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
   users.users.vnhantyn.shell = pkgs.zsh;
 
   # Bluetooth
   services.blueman.enable = true;
+
+  # TLP
+  services.tlp = {
+    enable = true;
+    settings = {
+      START_CHARGE_THRESH_BAT0 = 60;
+      STOP_CHARGE_THRESH_BAT0 = 60;
+
+      # START_CHARGE_THRESH_BAT1 = 75;
+      # STOP_CHARGE_THRESH_BAT1 = 80;
+    };
+  };
+  services.power-profiles-daemon.enable = false; # Disable default daemon
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -82,10 +96,10 @@
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
-
-    layout = "us";
-
-    xkbOptions = "ctrl:nocaps";
+    xkb = {
+      layout = "us";
+      options = "ctrl:nocaps";
+    };
   };
 
   # Enable CUPS to print documents.
@@ -137,35 +151,8 @@
     wget
     firefox
     git
-    github-cli
-    neovim
-    vlc
-    htop
     unzip
-    bat
-    ripgrep
-    fd
-    solaar # Logitech Devices
-    tree-sitter
-    xclip
-
-    #---------- Terminal -----------#
-    zsh
-
-    #---------- Formatter ----------#
-    stylua
-    black       # for Python
-    rustfmt     # for Rust
-    prettierd   # for web development
-    clang-tools # for C/C++
-
-    #---------- Dev ----------#
-    gcc # C++
-    nodejs
-
-    #---------- Terminal ----------#
-    alacritty
-
+    htop
   ];
 
   # Automatically clear garbages
@@ -174,6 +161,8 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

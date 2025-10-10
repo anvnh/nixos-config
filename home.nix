@@ -3,6 +3,52 @@
 {
   home.stateVersion = "25.05";
   programs.home-manager.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
+
+  home.packages = with pkgs; [
+    neovim
+    vlc
+    solaar # Logitech Devices
+    appimage-run # To run .Appimage
+
+    #---------- Terminal -----------#
+    zsh
+    bat
+    ripgrep
+    fd
+    tree-sitter
+    xclip # Clipboard
+
+    #---------- Formatter ----------#
+    stylua
+    black       # for Python
+    rustfmt     # for Rust
+    prettierd   # for web development
+    clang-tools # for C/C++
+
+    #---------- Dev ----------#
+    gcc # C++
+    nodejs
+
+    #---------- Terminal ----------#
+    alacritty
+
+    #---------- Productivity ----------//
+    ticktick
+    obsidian
+  ];
+
+  programs.gh = {
+    enable = true;
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "anvnh";
+    userEmail = "anvo20052@gmail.com";
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
@@ -92,7 +138,7 @@
     enable = true;
     oh-my-zsh.enable = false;
 
-    initExtraFirst = ''
+    initContent = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
     '';
