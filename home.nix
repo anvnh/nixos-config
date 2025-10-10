@@ -1,13 +1,21 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+  # Links git repo to ~/.config/nvim
+  xdg.configFile."nvim" = {
+    source = inputs.nvim-config;
+    recursive = true;
+  };
+
   home.stateVersion = "25.05";
   programs.home-manager.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-
   home.packages = with pkgs; [
-    neovim
+    # neovim
     vlc
     solaar # Logitech Devices
     appimage-run # To run .Appimage
@@ -146,7 +154,8 @@
     autosuggestion.enable = true;
     history.size = 10000;
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch";
+      # nrs = "sudo nixos-rebuild switch";
+      nrs = "sudo nixos-rebuild switch --flake .#vnhantyn";
     };
   };
 }
