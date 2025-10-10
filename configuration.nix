@@ -1,14 +1,9 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -20,17 +15,9 @@
   networking.hostName = "nixos-nvhantyn"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Home manager
-  home-manager.backupFileExtension = "backup";
-  home-manager.users.vnhantyn = {
-    imports = [ ./home.nix ];
-    # home.stateVersion = "25.05";
-  };
-
   # Default shell
   # users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-  users.users.vnhantyn.shell = pkgs.zsh;
 
   # Bluetooth
   services.blueman.enable = true;
@@ -129,6 +116,7 @@
     isNormalUser = true;
     description = "vnhantyn";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
