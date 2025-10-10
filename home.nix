@@ -31,10 +31,10 @@
 
     #---------- Formatter ----------#
     stylua
-    black       # for Python
     rustfmt     # for Rust
     prettierd   # for web development
     clang-tools # for C/C++
+    pyright
 
     #---------- Dev ----------#
     gcc # C++
