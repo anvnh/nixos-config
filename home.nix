@@ -5,15 +5,21 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    neovim
     vlc
     solaar # Logitech Devices
     appimage-run # To run .Appimage
 
+    #---------- Editor ------------#
+    neovim
+    vscode
+
     #---------- Toolchain ----------#
     cargo
+    flutter
+    android-tools
 
     #---------- CLI Tools ----------#
+    tmux
     ripgrep
     fd
     bat
@@ -31,6 +37,7 @@
 
     #---------- Formatter ----------#
     stylua
+    lua-language-server
     rustfmt     # for Rust
     prettierd   # for web development
     clang-tools # for C/C++

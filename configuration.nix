@@ -20,7 +20,8 @@
   programs.zsh.enable = true;
 
   # Bluetooth
-  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+  # services.blueman.enable = true;
 
   # TLP
   services.tlp = {
@@ -124,7 +125,8 @@
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
+  programs.adb.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -137,7 +139,7 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    firefox
+    # firefox
     git
     unzip
     htop
