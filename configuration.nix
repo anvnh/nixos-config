@@ -80,6 +80,8 @@
       services.displayManager.sddm.enable = true;
       services.desktopManager.plasma6.enable = true;
 
+      programs.kdeconnect.enable = true;
+
       # Configure keymap
       services.xserver = {
             # Enable the X11 windowing system.
@@ -108,6 +110,7 @@
             # no need to redefine it in your config for now)
             #media-session.enable = true;
       };
+      hardware.enableRedistributableFirmware = true;
 
       # Enable touchpad support (enabled default in most desktopManager).
       # services.xserver.libinput.enable = true;
@@ -146,7 +149,11 @@
             git
             unzip
             htop
+            wireplumber
+            direnv
       ];
+      programs.direnv.enable = true;
+      programs.direnv.nix-direnv.enable = true;
 
       # Automatically clear garbages
       nix.gc = {
@@ -173,6 +180,8 @@
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
       # networking.firewall.allowedUDPPorts = [ ... ];
+      networking.firewall.allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+      networking.firewall.allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
       # Or disable the firewall altogether.
       # networking.firewall.enable = false;
 

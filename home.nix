@@ -1,6 +1,33 @@
 { config, pkgs, ... }:
 
-{
+let
+      systemFont = {
+            name = "FiraCode Nerd Font";
+            size = 11;
+      };
+in {
+      gtk = {
+            enable = true;
+            theme = {
+                  name = "Breeze";
+                  package = pkgs.kdePackages.breeze-gtk;
+            };
+
+            iconTheme = {
+                  name = "breeze-dark";
+                  package = pkgs.kdePackages.breeze;
+            };
+
+            cursorTheme = {
+                  name = "breeze_cursors";
+                  package = pkgs.kdePackages.breeze;
+            };
+            font = {
+                  name = systemFont.name;
+                  size = systemFont.size;
+            };
+      };
+
       home.stateVersion = "25.05";
       programs.home-manager.enable = true;
 
@@ -20,6 +47,7 @@
             android-tools
             jdk17
             pnpm
+            python310
 
             #---------- CLI Tools ----------#
             tmux
@@ -34,6 +62,8 @@
             pay-respects
             dua
             duf
+            jq
+            scrcpy
 
             #---------- Terminal -----------#
             zsh
@@ -48,9 +78,12 @@
             clang-tools # for C/C++
             pyright
 
-            #---------- Dev ----------#
+            #---------- Languages ----------#
             gcc # C++
             nodejs
+            cargo
+            rustc
+            rust-analyzer
 
             #---------- Terminal ----------#
             alacritty
@@ -76,6 +109,9 @@
                   prefix = "C-a";
                   terminal = "tmux-256color";
                   extraConfig = ''
+                        # Set position of status bar to top
+                        set-option -g status-position top
+
                         set -as terminal-features 'xterm-256color:RGB'
                         set -as terminal-features 'alacritty:RGB'
                         set -as terminal-features 'tmux-256color:RGB'
@@ -152,9 +188,12 @@
                                     family = "FiraCode Nerd Font";
                                     style = "Regular";
                               };
-                              size = 14;
+                              size = 13;
                         };
-                        # window.padding = { x = 10; y = 10; };
+                        window = {
+                              dynamic_padding = true;
+                              # padding = { x = 10; y = 10; };
+                        };
                         colors = {
                               primary = {
                                     background = "0x161616";
@@ -235,8 +274,9 @@
                   oh-my-zsh.enable = false;
 
                   initContent = ''
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+                        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+                        [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+                        eval "$(direnv hook zsh)"
                   '';
                   syntaxHighlighting.enable = true;
                   autosuggestion.enable = true;
