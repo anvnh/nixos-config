@@ -2,10 +2,12 @@
       description = "Command Center";
 
       inputs = {
-            nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+            # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+            nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
             home-manager = {
-                  url = "github:nix-community/home-manager";
+                  # url = "github:nix-community/home-manager";
+                  url = "github:nix-community/home-manager-25.05";
                   inputs.nixpkgs.follows = "nixpkgs";
             };
       };

@@ -1,41 +1,21 @@
 { config, pkgs, ... }:
 
-let
-      systemFont = {
-            name = "FiraCode Nerd Font";
-            size = 11;
-      };
-in {
-      gtk = {
-            enable = true;
-            theme = {
-                  name = "Breeze";
-                  package = pkgs.kdePackages.breeze-gtk;
-            };
-
-            iconTheme = {
-                  name = "breeze-dark";
-                  package = pkgs.kdePackages.breeze;
-            };
-
-            cursorTheme = {
-                  name = "breeze_cursors";
-                  package = pkgs.kdePackages.breeze;
-            };
-            font = {
-                  name = systemFont.name;
-                  size = systemFont.size;
-            };
-      };
-
+# let
+#       systemFont = {
+#             name = "FiraCode Nerd Font";
+#             size = 11;
+#       };
+# in
+{
       home.stateVersion = "25.05";
-      programs.home-manager.enable = true;
 
       home.packages = with pkgs; [
             vlc
             solaar # Logitech Devices
             appimage-run # To run .Appimage
             ncurses
+
+            thunderbird
 
             #---------- Editor ------------#
             neovim
@@ -48,8 +28,10 @@ in {
             jdk17
             pnpm
             python310
+            cmake
 
             #---------- CLI Tools ----------#
+            btop
             tmux
             ripgrep
             fd
@@ -79,7 +61,8 @@ in {
             pyright
 
             #---------- Languages ----------#
-            gcc # C++
+            gcc
+            clang-tools
             nodejs
             cargo
             rustc
@@ -94,6 +77,7 @@ in {
       ];
 
       programs = {
+            home-manager.enable = true;
 
             tmux = {
                   enable = true;
@@ -152,7 +136,6 @@ in {
                         set -g @catppuccin_flavor "frappe"
                         set -g @catppuccin_window_status_style "slanted"
                         set -g @catppuccin_date_time_text " %a %d/%m/%Y | %H:%M"
-
                         set -g status-left-length 100
                         set -g status-right-length 100
                         set -g status-left "(づ๑•ᴗ•๑)づ"
