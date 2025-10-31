@@ -1,12 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
-# let
-#       systemFont = {
-#             name = "FiraCode Nerd Font";
-#             size = 11;
-#       };
-# in
-{
+let
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+            system = pkgs.system;
+            config.allowUnfree = true;
+      };
+in{
       home.stateVersion = "25.05";
 
       home.packages = with pkgs; [
@@ -31,6 +30,7 @@
             cmake
 
             #---------- CLI Tools ----------#
+            lsof
             btop
             tmux
             ripgrep
@@ -46,6 +46,14 @@
             duf
             jq
             scrcpy
+
+            #---------- Chat ----------#
+            telegram-desktop
+
+            #---------- IDE -----------#
+            jetbrains.clion
+            # jetbrains.webstorm
+            pkgs-unstable.jetbrains.webstorm
 
             #---------- Terminal -----------#
             zsh
@@ -64,6 +72,7 @@
             gcc
             clang-tools
             nodejs
+            pkgs-unstable.wrangler
             cargo
             rustc
             rust-analyzer
@@ -72,8 +81,10 @@
             alacritty
 
             #---------- Productivity ----------//
-            ticktick
+            # ticktick
+            todoist-electron
             obsidian
+            libreoffice
       ];
 
       programs = {
@@ -93,6 +104,7 @@
                   prefix = "C-a";
                   terminal = "tmux-256color";
                   extraConfig = ''
+                        set -g mouse on
                         # Set position of status bar to top
                         set-option -g status-position top
 
@@ -105,10 +117,10 @@
                         bind C-a send-prefix
 
                         # Use Alt-hjkl keys without prefix key to switch panes
-                        bind -n C-Left select-pane -L
-                        bind -n C-Right select-pane -R
-                        bind -n C-Up select-pane -U
-                        bind -n C-Down select-pane -D
+                        # bind -n C-h select-pane -L
+                        # bind -n C-l select-pane -R
+                        # bind -n C-k select-pane -U
+                        # bind -n C-j select-pane -D
 
                         # Passthrough for image viewing
                         set -gq allow-passthrough on
@@ -116,12 +128,6 @@
 
                         # True Color support
                         set-option -sa terminal-overrides ",xterm*:Tc"
-
-                        # Key bindings
-                        bind -n C-Left select-pane -L
-                        bind -n C-Right select-pane -R
-                        bind -n C-Up select-pane -U
-                        bind -n C-Down select-pane -D
 
                         bind -n C-M-h previous-window
                         bind -n C-M-l next-window
@@ -134,7 +140,7 @@
                         bind % split-window -h -c "#{pane_current_path}"
 
                         set -g @catppuccin_flavor "frappe"
-                        set -g @catppuccin_window_status_style "slanted"
+                        # set -g @catppuccin_window_status_style "slanted"
                         set -g @catppuccin_date_time_text " %a %d/%m/%Y | %H:%M"
                         set -g status-left-length 100
                         set -g status-right-length 100
@@ -267,6 +273,8 @@
                   shellAliases = {
                         # nrs = "sudo nixos-rebuild switch";
                         nrs = "sudo nixos-rebuild switch --flake .#vnhantyn";
+                        ncg = "sudo nix-collect-garbage -d";
+                        sn = "shutdown now";
                         ls = "eza --color=always --long --git --no-filesize --icons=always";
                         cd = "z";
                         "?" = "pay-respects";

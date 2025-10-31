@@ -23,6 +23,7 @@
       hardware.bluetooth.enable = true;
       # services.blueman.enable = true;
 
+
       # TLP
       services.tlp = {
             enable = true;
@@ -119,7 +120,7 @@
       users.users.vnhantyn = {
             isNormalUser = true;
             description = "vnhantyn";
-            extraGroups = [ "networkmanager" "wheel" ];
+            extraGroups = [ "networkmanager" "wheel"];
             shell = pkgs.zsh;
             packages = with pkgs; [
                   kdePackages.kate
@@ -151,9 +152,13 @@
             htop
             wireplumber
             direnv
+            nix-direnv
       ];
       programs.direnv.enable = true;
       programs.direnv.nix-direnv.enable = true;
+
+      # Steam
+      programs.steam.enable = true;
 
       # Automatically clear garbages
       nix.gc = {
@@ -180,6 +185,8 @@
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
       # networking.firewall.allowedUDPPorts = [ ... ];
+      networking.firewall.allowedTCPPorts = [ 3000 3001 ];
+      # networking.firewall.allowedTCPPortRanges = [ { from = 3000; to = 3001; } ];
       networking.firewall.allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
       networking.firewall.allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
       # Or disable the firewall altogether.
