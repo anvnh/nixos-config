@@ -266,6 +266,26 @@ in{
                         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
                         [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
                         eval "$(direnv hook zsh)"
+
+                        function nix-init() {
+                              # Check if files already exist to avoid overwriting
+                              if [ -f "shell.nix" ] || [ -f ".envrc" ] || [ -f ".editorconfig" ]; then
+                                    echo "Error: One or more files (shell.nix, .envrc, .editorconfig) already exist."
+                                    return 1
+                              fi
+
+                              # === Create shell.nix ===
+                              echo -e "{ pkgs ? import <nixpkgs> {} }:\n\npkgs.mkShell {\n  buildInputs = [\n    # Add your dependencies here\n    # Example: pkgs.nodejs\n  ];\n\n  # --- Commands to run on activation ---\n  shellHook = '''\n    echo \"✨ Environment activated.\"\n    \n    # --- Project-specific Aliases ---\n    # alias build=\"echo 'Build command here'\"\n    # alias run=\"echo 'Run command here'\"\n  ''';\n}" > shell.nix
+
+                              # === Create .envrc ===
+                              echo -e "use nix" > .envrc
+
+                              # === Create .editorconfig ===
+                              echo -e "root = true\n\n[*]\nindent_style = space\nindent_size = 6\nend_of_line = lf\ncharset = utf-8\ntrim_trailing_whitespace = true\ninsert_final_newline = true" > .editorconfig
+
+                              echo "Created 3 files: shell.nix, .envrc, .editorconfig"
+                              echo "Run 'direnv allow' to activate the environment"
+                        }
                   '';
                   syntaxHighlighting.enable = true;
                   autosuggestion.enable = true;
