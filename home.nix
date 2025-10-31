@@ -275,7 +275,7 @@ in{
                               fi
 
                               # === Create shell.nix ===
-                              echo -e "{ pkgs ? import <nixpkgs> {} }:\n\npkgs.mkShell {\n  buildInputs = [\n    # Add your dependencies here\n    # Example: pkgs.nodejs\n  ];\n\n  # --- Commands to run on activation ---\n  shellHook = '''\n    echo \"✨ Environment activated.\"\n    \n    # --- Project-specific Aliases ---\n    # alias build=\"echo 'Build command here'\"\n    # alias run=\"echo 'Run command here'\"\n  ''';\n}" > shell.nix
+                              echo -e "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  # --- Project-specific Commands (Aliases) ---\n\n  build-cmd = pkgs.writeShellScriptBin \"build\" '''\n    #!/usr/bin/env bash\n    echo \"Build command here\"\n    # Example: exec pnpm run build \"\${"$"}\@\"\n  ''';\n\n  run-cmd = pkgs.writeShellScriptBin \"run\" '''\n    #!/usr/bin/env bash\n    echo \"Run command here\"\n    # Example: exec pnpm run dev \"\${"$"}\@\"\n  ''';\n\nin\npkgs.mkShell {\n  # --- Nix Dependencies ---\n  packages = [\n    # Add your dependencies here\n    # Example: pkgs.nodejs\n\n    # --- Add your commands ---\n    build-cmd\n    run-cmd\n  ];\n\n  # --- Environment Variables ---\n  shellHook = '''\n    echo \"✨ Environment activated.\"\n    export HELLO=\"world\"\n  ''';\n}" > shell.nix
 
                               # === Create .envrc ===
                               echo -e "use nix" > .envrc
