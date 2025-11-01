@@ -141,6 +141,10 @@
       # Enable flatpak
       services.flatpak.enable = true;
 
+      # Enable logitech devices support
+      hardware.logitech.wireless.enable = true;
+      hardware.logitech.wireless.enableGraphical = true;
+
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [

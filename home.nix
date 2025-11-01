@@ -13,7 +13,6 @@ in{
             solaar # Logitech Devices
             appimage-run # To run .Appimage
             ncurses
-
             thunderbird
 
             #---------- Editor ------------#
