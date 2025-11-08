@@ -9,81 +9,114 @@ in{
       home.stateVersion = "25.05";
 
       home.packages = with pkgs; [
-            vlc
-            solaar # Logitech Devices
-            appimage-run # To run .Appimage
-            ncurses
+            #========================================
+            # GUI Applications
+            #========================================
+            #--- Communication & Internet ---#
             thunderbird
-
-            #---------- Editor ------------#
-            neovim
-            vscode
-
-            #---------- Toolchain ----------#
-            cargo
-            flutter
-            android-tools
-            jdk17
-            pnpm
-            python310
-            cmake
-
-            #---------- CLI Tools ----------#
-            lsof
-            btop
-            tmux
-            ripgrep
-            fd
-            bat
-            fzf
-            bat # better cat
-            eza # better ls
-            tldr
-            zoxide
-            pay-respects
-            dua
-            duf
-            jq
-            scrcpy
-
-            #---------- Chat ----------#
             telegram-desktop
 
-            #---------- IDE -----------#
+            cloudflare-warp
+            pkgs-unstable.gemini-cli
+
+            #--- Media & Productivity ---#
+            vlc
+            libreoffice
+            obsidian
+            todoist-electron
+
+            #--- Utilities ---#
+            solaar          # Logitech management
+            appimage-run
+            scrcpy          # Android mirroring
+
+            #========================================
+            # Terminal & Shell Core
+            #========================================
+            alacritty       # Terminal Emulator
+            zsh             # Shell
+            tmux            # Terminal Multiplexer
+            ncurses         # Terminal UI library
+
+            #========================================
+            # CLI Utilities (Modern Replacements)
+            #========================================
+            pkgs-unstable.geminicommit    # Gemini commit
+            eza             # ls replacement
+            bat             # cat replacement
+            zoxide          # cd replacement
+            ripgrep         # grep replacement
+            fd              # find replacement
+            fzf             # Fuzzy finder
+            jq              # JSON processor
+            btop            # Resource monitor
+            dua             # Disk usage analyzer (better du)
+            duf             # Disk usage/free utility (better df)
+            tldr            # Simplified man pages
+            pay-respects    # Command correction (fun)
+
+            #--- System Utilities ---#
+            lsof
+            xclip           # Clipboard for X11
+            wl-clipboard    # Clipboard for Wayland
+
+            #========================================
+            # Development Environment
+            #========================================
+            #--- Editors & IDEs ---#
+            neovim
+            vscode
             jetbrains.clion
-            # jetbrains.webstorm
             pkgs-unstable.jetbrains.webstorm
 
-            #---------- Terminal -----------#
-            zsh
-            tree-sitter
-            xclip # Clipboard
+            #--- Compilers, Runtimes & SDKs ---#
+            gcc             # C/C++
+            python310       # Python
+            nodejs          # Node.js
+            jdk17           # Java
+            rustc           # Rust Core
+            flutter         # Flutter SDK
 
-            #---------- Formatter ----------#
-            stylua
+            #--- Build Tools & Package Managers ---#
+            cmake
+            gnumake
+            cargo           # Rust package manager
+            pnpm            # JS package manager
+            android-tools   # ADB, fastboot
+
+            #--- LSPs, Formatters & Linters ---#
+            # C/C++
+            clang-tools     # Includes clangd, clang-format
+
+            # Rust
+            rust-analyzer
+            rustfmt
+
+            # Nix
+            nixd # LSP
+
+            # Lua
             lua-language-server
-            rustfmt     # for Rust
-            prettierd   # for web development
-            clang-tools # for C/C++
+            stylua
+
+            # Web (JS/TS/HTML/CSS)
+            nodePackages.typescript-language-server
+            prettierd # Formatter
+
+            # Python
             pyright
 
-            #---------- Languages ----------#
-            gcc
-            clang-tools
-            nodejs
-            pkgs-unstable.wrangler
-            cargo
-            rustc
-            rust-analyzer
+            # Java
+            jdt-language-server     # Java LSP
 
-            #---------- Terminal ----------#
-            alacritty
+            # YAML
+            yaml-language-server    # YAML LSP
 
-            #---------- Productivity ----------//
-            # ticktick
-            todoist-electron
-            obsidian
-            libreoffice
+            # Bash
+            bash-language-server    # Bash LSP
+
+            # Other
+            tree-sitter             # Parser generator tool
       ];
 
       programs = {

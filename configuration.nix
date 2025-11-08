@@ -131,6 +131,7 @@
       # Install firefox.
       programs.firefox.enable = true;
 
+
       # SDK
       programs.adb.enable = true;
       services.udev.packages = [ pkgs.android-udev-rules ];
@@ -140,6 +141,10 @@
 
       # Enable flatpak
       services.flatpak.enable = true;
+
+      # Cloudflare WARP
+      services.cloudflare-warp.enable = true;
+
 
       # Enable logitech devices support
       hardware.logitech.wireless.enable = true;
