@@ -10,6 +10,16 @@ in{
 
       home.packages = with pkgs; [
             #========================================
+            # Hyprland Specific Packages
+            #========================================
+            waybar
+            rofi
+            mako
+            hyprpaper
+            grim
+            slurp
+
+            #========================================
             # GUI Applications
             #========================================
             #--- Communication & Internet ---#
@@ -18,6 +28,7 @@ in{
 
             cloudflare-warp
             pkgs-unstable.gemini-cli
+            pkgs-unstable.github-copilot-cli
 
             #--- Media & Productivity ---#
             vlc
@@ -42,6 +53,7 @@ in{
             # CLI Utilities (Modern Replacements)
             #========================================
             pkgs-unstable.geminicommit    # Gemini commit
+            cmus            # Music player
             eza             # ls replacement
             bat             # cat replacement
             zoxide          # cd replacement
@@ -119,6 +131,12 @@ in{
             tree-sitter             # Parser generator tool
       ];
 
+      home.file = {
+            ".config/hypr/hyprland.conf" = {
+                  source = ./hyprland/hyprland.conf;
+            };
+      };
+
       programs = {
             home-manager.enable = true;
 
@@ -132,11 +150,14 @@ in{
                         pkgs.tmuxPlugins.vim-tmux-navigator
                         pkgs.tmuxPlugins.yank
                         pkgs.tmuxPlugins.catppuccin
+                        pkgs.tmuxPlugins.resurrect
+                        pkgs.tmuxPlugins.continuum
                   ];
                   prefix = "C-a";
                   terminal = "tmux-256color";
                   extraConfig = ''
                         set -g mouse on
+                        set -g @continuum-restore 'on'
                         # Set position of status bar to top
                         set-option -g status-position top
 

@@ -78,10 +78,23 @@
       };
 
       # Enable the KDE Plasma Desktop Environment.
-      services.displayManager.sddm.enable = true;
+      # services.displayManager.sddm.enable = true;
+      services.displayManager.sddm = {
+            enable = true;
+            wayland.enable = true;
+      };
       services.desktopManager.plasma6.enable = true;
 
       programs.kdeconnect.enable = true;
+
+      # Enable Hyprland and setup
+      programs.hyprland.enable = true;
+      programs.xwayland.enable = true;
+
+      xdg.portal = {
+            enable = true;
+            extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+      };
 
       # Configure keymap
       services.xserver = {
@@ -144,7 +157,6 @@
 
       # Cloudflare WARP
       services.cloudflare-warp.enable = true;
-
 
       # Enable logitech devices support
       hardware.logitech.wireless.enable = true;
