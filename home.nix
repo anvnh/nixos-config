@@ -20,6 +20,9 @@ in {
             grim
             slurp
             bibata-cursors
+            xfce.thunar # file manager
+            xfce.tumbler ffmpegthumbnailer gdk-pixbuf # thumbnailers for thunar
+            sxiv # image viewer
 
             #========================================
             # GUI Applications
@@ -149,6 +152,7 @@ in {
       # xdg.configFile."waybar/config.jsonc".source = inputs.self + "/config/waybar/config.jsonc";
       # xdg.configFile."waybar/style.css".source = inputs.self + "/config/waybar/style.css";
       home.file.".config/waybar".source = ./config/waybar;
+      home.file.".config/rofi".source = ./config/rofi;
 
       programs = {
             home-manager.enable = true;
