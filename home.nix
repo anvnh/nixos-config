@@ -5,7 +5,7 @@ let
             system = pkgs.system;
             config.allowUnfree = true;
       };
-in{
+in {
       home.stateVersion = "25.05";
 
       home.packages = with pkgs; [
@@ -19,6 +19,7 @@ in{
             swww
             grim
             slurp
+            bibata-cursors
 
             #========================================
             # GUI Applications
@@ -134,10 +135,20 @@ in{
       ];
 
       home.file = {
-            ".config/hypr/hyprland.conf" = {
-                  source = ./hyprland/hyprland.conf;
-            };
+            # ".config/hypr/hyprland.conf" = {
+            #       source = ./hyprland/hyprland.conf;
+            # };
       };
+
+      home.sessionVariables = {
+            XCURSOR_THEME = "Bibata-Modern-Ice";
+            XCURSOR_SIZE = "24";
+      };
+
+      # xdg.configFile."waybar/config.jsonc".source = ./config/waybar/config.jsonc;
+      # xdg.configFile."waybar/config.jsonc".source = inputs.self + "/config/waybar/config.jsonc";
+      # xdg.configFile."waybar/style.css".source = inputs.self + "/config/waybar/style.css";
+      home.file.".config/waybar".source = ./config/waybar;
 
       programs = {
             home-manager.enable = true;
@@ -196,11 +207,11 @@ in{
 
                         set -g @catppuccin_flavor "frappe"
                         # set -g @catppuccin_window_status_style "slanted"
-                        set -g @catppuccin_date_time_text " %a %d/%m/%Y | %H:%M"
-                        set -g status-left-length 100
-                        set -g status-right-length 100
-                        set -g status-left "(づ๑•ᴗ•๑)づ"
-                        set -g status-right "#{E:@catppuccin_status_date_time}#{E:@catppuccin_status_user}#{E:@catppuccin_status_uptime}"
+                        # set -g @catppuccin_date_time_text " %a %d/%m/%Y | %H:%M"
+                        # set -g status-left-length 100
+                        # set -g status-right-length 100
+                        # set -g status-left "(づ๑•ᴗ•๑)づ"
+                        # set -g status-right "#{E:@catppuccin_status_date_time}#{E:@catppuccin_status_user}#{E:@catppuccin_status_uptime}"
                   '';
             };
 
