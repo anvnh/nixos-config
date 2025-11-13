@@ -133,11 +133,11 @@ in{
             tree-sitter             # Parser generator tool
       ];
 
-      home.file = {
-            ".config/hypr/hyprland.conf" = {
-                  source = ./hyprland/hyprland.conf;
-            };
-      };
+      # home.file = {
+      #       ".config/hypr/hyprland.conf" = {
+      #             source = ./hyprland/hyprland.conf;
+      #       };
+      # };
 
       programs = {
             home-manager.enable = true;

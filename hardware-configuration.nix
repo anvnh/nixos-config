@@ -29,7 +29,7 @@
       # hardware.opengl.driSupport32Bit = true;
       hardware.graphics.enable32Bit = true;
       hardware = {
-            opengl.enable = true;
+            graphics.enable = true;
             nvidia.modesetting.enable = true;
       };
 
