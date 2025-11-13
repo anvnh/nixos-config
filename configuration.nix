@@ -90,12 +90,7 @@
       # Enable Hyprland and setup
       programs.hyprland = {
             enable = true;
-            nvidiaPatches = true;
             xwayland.enable = true;
-      };
-
-      enviroment.sessionVariables = {
-            NIXOS_OZONE_WL = "1";
       };
 
       xdg.portal.enable = true;
