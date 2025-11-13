@@ -15,7 +15,8 @@ in{
             waybar
             rofi
             mako
-            hyprpaper
+            # hyprpaper
+            swww
             grim
             slurp
 
@@ -25,6 +26,7 @@ in{
             #--- Communication & Internet ---#
             thunderbird
             telegram-desktop
+            microsoft-edge
 
             cloudflare-warp
             pkgs-unstable.gemini-cli
@@ -131,11 +133,11 @@ in{
             tree-sitter             # Parser generator tool
       ];
 
-      home.file = {
-            ".config/hypr/hyprland.conf" = {
-                  source = ./hyprland/hyprland.conf;
-            };
-      };
+      # home.file = {
+      #       ".config/hypr/hyprland.conf" = {
+      #             source = ./hyprland/hyprland.conf;
+      #       };
+      # };
 
       programs = {
             home-manager.enable = true;

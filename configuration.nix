@@ -88,13 +88,18 @@
       programs.kdeconnect.enable = true;
 
       # Enable Hyprland and setup
-      programs.hyprland.enable = true;
-      programs.xwayland.enable = true;
-
-      xdg.portal = {
+      programs.hyprland = {
             enable = true;
-            extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+            nvidiaPatches = true;
+            xwayland.enable = true;
       };
+
+      enviroment.sessionVariables = {
+            NIXOS_OZONE_WL = "1";
+      };
+
+      xdg.portal.enable = true;
+      xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
       # Configure keymap
       services.xserver = {
