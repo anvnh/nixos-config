@@ -83,7 +83,9 @@
             enable = true;
             wayland.enable = true;
       };
-      services.desktopManager.plasma6.enable = true;
+
+      # Disable Plasma 6
+      services.desktopManager.plasma6.enable = false;
 
       programs.kdeconnect.enable = true;
 
