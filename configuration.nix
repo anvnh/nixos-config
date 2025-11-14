@@ -89,6 +89,9 @@
 
       programs.kdeconnect.enable = true;
 
+      # Enable Gnome Keyring for password management
+      services.gnome.gnome-keyring.enable = true;
+
       # Enable Hyprland and setup
       programs.hyprland = {
             enable = true;

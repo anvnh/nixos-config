@@ -15,14 +15,15 @@ in {
             waybar
             rofi
             mako
-            # hyprpaper
-            swww
+            swww # Wallpaper
             grim
             slurp
             bibata-cursors
             xfce.thunar # file manager
             xfce.tumbler ffmpegthumbnailer gdk-pixbuf # thumbnailers for thunar
             sxiv # image viewer
+            cliphist
+            sway-contrib.grimshot
 
             #========================================
             # GUI Applications
@@ -75,7 +76,7 @@ in {
 
             #--- System Utilities ---#
             lsof
-            xclip           # Clipboard for X11
+            # xclip           # Clipboard for X11
             wl-clipboard    # Clipboard for Wayland
 
             #========================================

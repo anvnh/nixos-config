@@ -30,4 +30,4 @@ configuration{
       kb-move-char-forward: "Control+f";
       kb-mode-complete: "Control+o";
 }
-@theme "tokyonight.rasi"
+@theme "catppucin.rasi"
