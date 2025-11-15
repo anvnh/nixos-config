@@ -1,0 +1,36 @@
+# Unstaged files(Undo git add)
+git restore --staged .
+
+# Unstaged a specific file
+git restore --staged <file>
+
+# Edit the most recent commit message
+git commit --amend
+
+# Edit an older or mutiple commits
+git rebase -i
+
+1. Your text editor will open with a list of commits:
+
+pick 1a2b3c4 Oldest commit message
+pick 5d6e7f8 Second commit message
+pick 9g0h1i2 Newest commit message
+
+2. Change pick to edit (or e) for the specific commit(s) you want to modify:
+
+pick 1a2b3c4 Oldest commit message
+edit 5d6e7f8 Second commit message
+pick 9g0h1i2 Newest commit message
+
+3. Save and close the editor. Git will rewind to the first commit marked edit (in this case, 5d6e7f8).
+
+4. The rebase will pause. You are now at that commit. Make your modifications.
+
+    To change files: git add <files>, git rm <files>
+
+    To finalize the changes to this specific commit: git commit --amend
+
+    Modify the message in the editor if needed, then save and close.
+
+5. Continue the rebase process: git rebase --continue
+Git will proceed until the next edit (if any) or until the rebase is complete.

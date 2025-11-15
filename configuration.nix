@@ -84,6 +84,8 @@
             wayland.enable = true;
       };
 
+      services.displayManager.sddm.theme = "catppuccin-sddm";
+
       # Disable Plasma 6
       services.desktopManager.plasma6.enable = false;
 
@@ -179,6 +181,7 @@
             wireplumber
             direnv
             nix-direnv
+            catppuccin-sddm # SDDM theme
       ];
       programs.direnv.enable = true;
       programs.direnv.nix-direnv.enable = true;
@@ -194,6 +197,17 @@
       };
 
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+      swapDevices = [
+            {
+                  device = "/swapfile";
+                  size = 8192; # Size in MB
+            }
+      ];
+
+      boot.kernel.sysctl = {
+            "vm.swappiness" = 10; # Lower swappiness for better performance
+      };
 
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.

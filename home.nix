@@ -32,6 +32,7 @@ in {
             thunderbird
             telegram-desktop
             microsoft-edge
+            drawio
 
             cloudflare-warp
             pkgs-unstable.gemini-cli
@@ -85,8 +86,8 @@ in {
             #--- Editors & IDEs ---#
             neovim
             vscode
-            jetbrains.clion
-            pkgs-unstable.jetbrains.webstorm
+            # jetbrains.clion
+            # pkgs-unstable.jetbrains.webstorm
 
             #--- Compilers, Runtimes & SDKs ---#
             gcc             # C/C++
@@ -154,6 +155,7 @@ in {
       # xdg.configFile."waybar/style.css".source = inputs.self + "/config/waybar/style.css";
       home.file.".config/waybar".source = ./config/waybar;
       home.file.".config/rofi".source = ./config/rofi;
+      home.file.".config/git-cheatsheet.txt".source = ./config/git-cheatsheet.txt;
 
       programs = {
             home-manager.enable = true;
@@ -234,6 +236,9 @@ in {
                               side-by-side = true;
                               line-numbers = true;
                         };
+                  };
+                  extraConfig = {
+                        push.autoSetupRemote = "true";
                   };
             };
             alacritty = {
