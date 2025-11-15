@@ -62,6 +62,7 @@ in {
             # CLI Utilities (Modern Replacements)
             #========================================
             pkgs-unstable.geminicommit    # Gemini commit
+            ranger          # CLI file manager
             cmus            # Music player
             eza             # ls replacement
             bat             # cat replacement
