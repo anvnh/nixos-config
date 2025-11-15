@@ -14,7 +14,7 @@ in {
             #========================================
             waybar
             rofi
-            mako
+            mako libnotify # Notification
             swww # Wallpaper
             grim
             slurp
@@ -25,6 +25,7 @@ in {
             cliphist
             sway-contrib.grimshot
             pavucontrol # audio control
+            brightnessctl # brightness control
 
             #========================================
             # GUI Applications
@@ -158,6 +159,27 @@ in {
       home.file.".config/waybar".source = ./config/waybar;
       home.file.".config/rofi".source = ./config/rofi;
       home.file.".config/.cheatsheet".source = ./config/.cheatsheet;
+
+      services.mako = {
+            enable = true;
+            settings = {
+                  font = "JetBrainsMono Nerd Font 12";
+                  padding = "10";
+                  width = 400;
+                  height = 100;
+                  "border-size" = 2;
+                  "border-radius" = 8;
+                  "default-timeout" = 5000;
+
+                  "background-color" = "#1e1e2e60";
+                  "text-color" = "#cdd6f4";
+                  "border-color" = "#89b4fa"; # Mặc định
+                  "progress-color" = "over #313244";
+                  "urgency=high" = {
+                        "border-color" = "#fab387";
+                  };
+            };
+      };
 
       programs = {
             home-manager.enable = true;

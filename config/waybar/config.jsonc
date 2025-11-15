@@ -29,6 +29,8 @@
             "custom/sep",
             "pulseaudio",
             "custom/sep",
+            "backlight",
+            "custom/sep",
             "battery",
             "custom/sep",
             "tray"
@@ -84,9 +86,13 @@
             "format-icons": ["", "", "", "", ""]
       },
       "pulseaudio": {
-            "format": "{volume}% ",
+            "format": "{volume}%  ",
             "format-muted": "Muted ",
             "on-click": "pavucontrol",
+            "tooltip": false
+      },
+      "backlight": {
+            "format": "{percent}%  ",
             "tooltip": false
       },
       "network": {
