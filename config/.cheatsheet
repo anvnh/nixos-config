@@ -2,3 +2,14 @@
 [Git] Unstage a specific file :: git restore --staged <file>
 [Git] Edit the most recent commit message :: git commit --amend
 [Git] Edit an older or multiple commits (interactive) :: git rebase -i HEAD~3
+[Git] START interactive rebase (edit/squash/reword) for last 3 commits :: git rebase -i HEAD~3
+[Git-Rebase] (Editor) Use commit as-is (default) :: pick
+[Git-Rebase] (Editor) Stop to edit commit message ONLY :: reword
+[Git-Rebase] (Editor) Stop to edit files AND message (like --amend) :: edit
+[Git-Rebase] (Editor) Combine/squash commit INTO previous commit (prompts for new message) :: squash
+[Git-Rebase] (Editor) Combine/squash commit INTO previous commit (discards message) :: fixup
+[Git-Rebase] (Editor) Delete the commit entirely :: drop
+[Git-Rebase] (Terminal) AFTER making changes during an 'edit' stop :: git add . && git commit --amend
+[Git-Rebase] (Terminal) Continue the rebase process :: git rebase --continue
+[Git-Rebase] (Terminal) ABORT the rebase and return to original state :: git rebase --abort
+[Git-Rebase] (Warning) This REWRITES history. Do NOT use on pushed/public branches.
