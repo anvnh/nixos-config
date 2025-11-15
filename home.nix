@@ -376,6 +376,7 @@ in {
                         ls = "eza --color=always --long --git --no-filesize --icons=always";
                         cd = "z";
                         "?" = "pay-respects";
+                        githelp = "cat ~/.config/git-cheats.txt | fzf";
                   };
             };
 
