@@ -155,7 +155,7 @@ in {
       # xdg.configFile."waybar/style.css".source = inputs.self + "/config/waybar/style.css";
       home.file.".config/waybar".source = ./config/waybar;
       home.file.".config/rofi".source = ./config/rofi;
-      home.file.".config/git-cheatsheet.txt".source = ./config/git-cheatsheet.txt;
+      home.file.".config/.cheatsheet".source = ./config/.cheatsheet;
 
       programs = {
             home-manager.enable = true;
@@ -364,6 +364,31 @@ in {
                               echo "Created 3 files: shell.nix, .envrc, .editorconfig"
                               echo "Run 'direnv allow' to activate the environment"
                         }
+
+                        function githelp() {
+                              # Path to your cheatsheet file
+                              local CHEAT_FILE=~/.config/.cheatsheet
+
+                              local selected
+                              # --delimiter='::' -> Set the field separator
+                              # --with-nth=1     -> Search only the description (field 1)
+                              # --preview='...'  -> Show the command (field 2) in the preview window
+                              selected=$(cat "$CHEAT_FILE" | fzf --height=40% \
+                                  --delimiter='::' \
+                                  --with-nth=1 \
+                                  --preview-window='right:60%' \
+                                  --preview='echo {} | awk -F "::" "{print \$2}" | sed "s/^[ \t]*//"')
+
+                              # If the user pressed Enter (not Esc)
+                              if [ -n "$selected" ]; then
+                                      # Extract the command (field 2 after '::')
+                                      local command
+                                      command=$(echo "$selected" | awk -F '::' '{print $2}' | sed 's/^[ \t]*//')
+
+                                      # (ZSH) Put the command into the current terminal line (Readline buffer)
+                                      print -z "$command"
+                              fi
+                      }
                   '';
                   syntaxHighlighting.enable = true;
                   autosuggestion.enable = true;
@@ -376,7 +401,6 @@ in {
                         ls = "eza --color=always --long --git --no-filesize --icons=always";
                         cd = "z";
                         "?" = "pay-respects";
-                        githelp = "cat ~/.config/git-cheats.txt | fzf";
                   };
             };
 

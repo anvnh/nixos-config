@@ -1,0 +1,4 @@
+[Git] Unstage all files (Undo 'git add .') :: git restore --staged .
+[Git] Unstage a specific file :: git restore --staged <file>
+[Git] Edit the most recent commit message :: git commit --amend
+[Git] Edit an older or multiple commits (interactive) :: git rebase -i HEAD~3
