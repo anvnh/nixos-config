@@ -24,6 +24,7 @@ in {
             sxiv # image viewer
             cliphist
             sway-contrib.grimshot
+            pavucontrol # audio control
 
             #========================================
             # GUI Applications

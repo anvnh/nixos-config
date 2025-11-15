@@ -27,6 +27,8 @@
             "custom/sep",
             "clock",
             "custom/sep",
+            "pulseaudio",
+            "custom/sep",
             "battery",
             "custom/sep",
             "tray"
@@ -81,10 +83,12 @@
             "format-time": "{H}:{M}",
             "format-icons": ["", "", "", "", ""]
       },
-      // "network": {
-      //       "format": "Online",
-      //       "format-disconnected": "Disconnected ⚠"
-      // },
+      "pulseaudio": {
+            "format": "{volume}% ",
+            "format-muted": "Muted ",
+            "on-click": "pavucontrol",
+            "tooltip": false
+      },
       "network": {
             // Format for Wi-Fi connections
             "format-wifi": " {essid} ({signalStrength}%)",
@@ -99,6 +103,7 @@
       },
       "custom/sep": {
             "format" : "|",
-            "interval" : 0
+            "interval" : 0,
+            "tooltip": false
       }
 }

@@ -82,9 +82,9 @@
       services.displayManager.sddm = {
             enable = true;
             wayland.enable = true;
+            # theme = "catppuccin-mocha-mauve";
+            # package = pkgs.kdePackages.sddm;
       };
-
-      services.displayManager.sddm.theme = "catppuccin-sddm";
 
       # Disable Plasma 6
       services.desktopManager.plasma6.enable = false;
@@ -181,7 +181,16 @@
             wireplumber
             direnv
             nix-direnv
-            catppuccin-sddm # SDDM theme
+            networkmanagerapplet
+            # catppuccin-sddm.override {
+            #       flavor = "mocha";
+            #       accent = "mauve";
+            #       font  = "Noto Sans";
+            #       fontSize = "14";
+            #       # background = "${./wallpaper.png}";
+            #       loginBackground = true;
+            # }
+            catppuccin-sddm
       ];
       programs.direnv.enable = true;
       programs.direnv.nix-direnv.enable = true;
