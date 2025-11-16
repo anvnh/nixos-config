@@ -159,7 +159,7 @@ in {
       # xdg.configFile."waybar/style.css".source = inputs.self + "/config/waybar/style.css";
       home.file.".config/waybar".source = ./config/waybar;
       home.file.".config/rofi".source = ./config/rofi;
-      home.file.".config/.cheatsheet".source = ./config/.cheatsheet;
+      home.file.".config/.cheatsheet".source = ./config/cheatsheet;
       home.file.".config/.gitcommit".source = ./config/gitcommit;
 
       services.mako = {
