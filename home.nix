@@ -88,7 +88,7 @@ in {
             # Development Environment
             #========================================
             #--- Editors & IDEs ---#
-            neovim
+            # neovim
             vscode
             # jetbrains.clion
             # pkgs-unstable.jetbrains.webstorm
@@ -185,7 +185,10 @@ in {
 
       programs = {
             home-manager.enable = true;
-
+            neovim = {
+                  enable = true;
+                  defaultEditor = true;
+            };
             tmux = {
                   enable = true;
                   keyMode = "vi";
@@ -265,7 +268,7 @@ in {
                   };
                   extraConfig = {
                         push.autoSetupRemote = "true";
-                        commit.template = "~/.gitcommit";
+                        commit.template = "~/.config/.gitcommit";
                   };
             };
             alacritty = {
@@ -425,11 +428,21 @@ in {
                         nrs = "sudo nixos-rebuild switch --flake .#vnhantyn";
                         ncg = "sudo nix-collect-garbage -d";
                         sn = "shutdown now";
+                        rb = "reboot";
                         ls = "eza --color=always --long --git --no-filesize --icons=always";
                         cd = "z";
                         ".." = "cd ..";
                         "..." = "cd ../..";
                         "?" = "pay-respects";
+
+                        # Git
+                        glg = "log --oneline --graph --all --decorate";
+                        gst = "git status";
+                        gco = "git checkout -b";
+                        ga = "git add";
+                        gc = "git commit";
+                        gp = "git push";
+                        gpl = "git pull";
                   };
             };
 
