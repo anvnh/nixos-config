@@ -37,6 +37,13 @@
       };
       services.power-profiles-daemon.enable = false; # Disable default daemon
 
+      # Optimize battery life
+      services.udev.extraRules = ''
+          ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
+          ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="min_power"
+      '';
+      boot.extraModprobeConfig = "options snd_hda_intel power_save=1";
+
       # Configure network proxy if necessary
       # networking.proxy.default = "http://user:password@proxy:port/";
       # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -216,6 +223,7 @@
                   size = 8192; # Size in MB
             }
       ];
+
 
       boot.kernel.sysctl = {
             "vm.swappiness" = 10; # Lower swappiness for better performance

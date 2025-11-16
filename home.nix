@@ -26,6 +26,7 @@ in {
             sway-contrib.grimshot
             pavucontrol # audio control
             brightnessctl # brightness control
+            powertop
 
             #========================================
             # GUI Applications
@@ -159,6 +160,7 @@ in {
       home.file.".config/waybar".source = ./config/waybar;
       home.file.".config/rofi".source = ./config/rofi;
       home.file.".config/.cheatsheet".source = ./config/.cheatsheet;
+      home.file.".config/.gitcommit".source = ./config/.gitcommit;
 
       services.mako = {
             enable = true;
@@ -263,6 +265,7 @@ in {
                   };
                   extraConfig = {
                         push.autoSetupRemote = "true";
+                        commit.template = "~/.gitcommit";
                   };
             };
             alacritty = {
@@ -424,6 +427,8 @@ in {
                         sn = "shutdown now";
                         ls = "eza --color=always --long --git --no-filesize --icons=always";
                         cd = "z";
+                        ".." = "cd ..";
+                        "..." = "cd ../..";
                         "?" = "pay-respects";
                   };
             };

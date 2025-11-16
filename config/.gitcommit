@@ -1,0 +1,31 @@
+# <type>(<scope>): <subject>
+# |      |         |
+# |      |         +-> Subject: Short description (50 char max). Not capitalized. No period.
+# |      |
+# |      +-> Scope (Optional): What part of the codebase? (e.g., "api", "ui", "parser")
+# |
+# +-> Type: What kind of change? (See list below)
+#
+
+# --- Types ---
+# feat:     A new feature
+# fix:      A bug fix
+# docs:     Documentation only changes
+# style:    Changes that do not affect the meaning of the code (white-space, formatting, etc)
+# refactor: A code change that neither fixes a bug nor adds a feature
+# perf:     A code change that improves performance
+# test:     Adding missing tests or correcting existing tests
+# build:    Changes that affect the build system or external dependencies
+# ci:       Changes to our CI configuration files and scripts
+# chore:    Other changes that don't modify src or test files (e.g., updating .gitignore)
+# revert:   Reverts a previous commit
+
+
+# Body (Optional):
+# - More detailed description. Wrap at 72 characters.
+# - Explain the "why" (problem, solution, effect) not the "how".
+
+# Footer (Optional):
+# - For BREAKING CHANGE or issue references.
+# - Example: BREAKING CHANGE: <description>
+# - Example: Closes #123
