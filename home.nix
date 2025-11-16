@@ -160,7 +160,7 @@ in {
       home.file.".config/waybar".source = ./config/waybar;
       home.file.".config/rofi".source = ./config/rofi;
       home.file.".config/.cheatsheet".source = ./config/.cheatsheet;
-      home.file.".config/.gitcommit".source = ./config/.gitcommit;
+      home.file.".config/.gitcommit".source = ./config/gitcommit;
 
       services.mako = {
             enable = true;
