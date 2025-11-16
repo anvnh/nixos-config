@@ -418,7 +418,9 @@ in {
                                       # (ZSH) Put the command into the current terminal line (Readline buffer)
                                       print -z "$command"
                               fi
-                      }
+                        }
+                        bindkey -r "^E"
+                        bindkey "^E" autosuggest-accept
                   '';
                   syntaxHighlighting.enable = true;
                   autosuggestion.enable = true;
