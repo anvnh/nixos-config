@@ -38,15 +38,20 @@
       services.power-profiles-daemon.enable = false; # Disable default daemon
 
       # Optimize battery life
-      services.udev.extraRules = ''
-          ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
-          ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="min_power"
-      '';
-      boot.extraModprobeConfig = "options snd_hda_intel power_save=1";
+      # services.udev.extraRules = ''
+      #     ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
+      #     ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="min_power"
+      # '';
+      # boot.extraModprobeConfig = "options snd_hda_intel power_save=1";
 
       # Configure network proxy if necessary
       # networking.proxy.default = "http://user:password@proxy:port/";
       # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+      systemd.network.links."10-usb-wifi" = {
+            matchConfig.MACAddress = "a8:6e:84:46:a0:20";
+            linkConfig.Name = "wlan0";
+      };
 
       # Enable networking
       networking.networkmanager.enable = true;
@@ -142,6 +147,12 @@
             #media-session.enable = true;
       };
       hardware.enableRedistributableFirmware = true;
+      # hardware.enableAllFirmware = true;
+
+      hardware = {
+            graphics.enable = true;
+            # nvidia.modesetting.enable = true;
+      };
 
       # Enable touchpad support (enabled default in most desktopManager).
       # services.xserver.libinput.enable = true;

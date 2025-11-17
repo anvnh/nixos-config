@@ -64,6 +64,8 @@ in {
             # CLI Utilities (Modern Replacements)
             #========================================
             pkgs-unstable.geminicommit    # Gemini commit
+            ranger
+            usbutils
             ranger          # CLI file manager
             cmus            # Music player
             eza             # ls replacement
@@ -421,6 +423,9 @@ in {
                         }
                         bindkey -r "^E"
                         bindkey "^E" autosuggest-accept
+                        bindkey '^P' up-line-or-history
+                        bindkey '^N' down-line-or-history
+                        bindkey '^A' beginning-of-line
                   '';
                   syntaxHighlighting.enable = true;
                   autosuggestion.enable = true;
