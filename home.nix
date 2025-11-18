@@ -32,11 +32,12 @@ in {
             # GUI Applications
             #========================================
             #--- Communication & Internet ---#
+            anki
             thunderbird
             telegram-desktop
             microsoft-edge
             drawio
-
+            kdePackages.kdeconnect-kde
             cloudflare-warp
             pkgs-unstable.gemini-cli
             pkgs-unstable.github-copilot-cli

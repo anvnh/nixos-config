@@ -108,6 +108,7 @@
 
       # Enable Gnome Keyring for password management
       services.gnome.gnome-keyring.enable = true;
+      security.pam.services.sddm.enableGnomeKeyring = true;
 
       # Enable Hyprland and setup
       programs.hyprland = {
