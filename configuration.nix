@@ -191,6 +191,9 @@
       hardware.logitech.wireless.enable = true;
       hardware.logitech.wireless.enableGraphical = true;
 
+      # Enable waydroid
+      virtualisation.waydroid.enable = true;
+
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
@@ -228,6 +231,7 @@
       };
 
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
+      nix.settings.trusted-users = [ "root" "vnhantyn" ];
 
       swapDevices = [
             {

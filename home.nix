@@ -9,6 +9,8 @@ in {
       home.stateVersion = "25.05";
 
       home.packages = with pkgs; [
+            devenv
+
             #========================================
             # Hyprland Specific Packages
             #========================================
@@ -27,6 +29,7 @@ in {
             pavucontrol # audio control
             brightnessctl # brightness control
             powertop
+            gammastep # nightlight
 
             #========================================
             # GUI Applications
@@ -162,6 +165,7 @@ in {
       # xdg.configFile."waybar/style.css".source = inputs.self + "/config/waybar/style.css";
       home.file.".config/waybar".source = ./config/waybar;
       home.file.".config/rofi".source = ./config/rofi;
+      home.file.".config/hypr".source = ./config/hypr;
       home.file.".config/.cheatsheet".source = ./config/cheatsheet;
       home.file.".config/.gitcommit".source = ./config/gitcommit;
 
