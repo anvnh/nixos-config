@@ -166,6 +166,7 @@ in {
       home.file.".config/waybar".source = ./config/waybar;
       home.file.".config/rofi".source = ./config/rofi;
       home.file.".config/hypr".source = ./config/hypr;
+      # home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/vnhantyn/nixos-config/config/hypr";
       home.file.".config/.cheatsheet".source = ./config/cheatsheet;
       home.file.".config/.gitcommit".source = ./config/gitcommit;
 
