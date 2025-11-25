@@ -9,7 +9,11 @@ in {
       home.stateVersion = "25.05";
 
       home.packages = with pkgs; [
+
             devenv
+
+            # Science Research Tools
+            zotero
 
             #========================================
             # Hyprland Specific Packages
@@ -36,7 +40,6 @@ in {
             #========================================
             #--- Communication & Internet ---#
             anki
-            thunderbird
             telegram-desktop
             microsoft-edge
             drawio
