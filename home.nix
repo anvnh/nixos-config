@@ -74,6 +74,7 @@ in {
             #========================================
             pkgs-unstable.geminicommit    # Gemini commit
             ranger
+            tree
             usbutils
             ranger          # CLI file manager
             cmus            # Music player
