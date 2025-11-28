@@ -9,7 +9,6 @@ in {
       home.stateVersion = "25.05";
 
       home.packages = with pkgs; [
-
             devenv
 
             # Science Research Tools
@@ -39,9 +38,12 @@ in {
             # GUI Applications
             #========================================
             #--- Communication & Internet ---#
+            # inputs.zen-browser.packages."${pkgs.system}".default # Zen browser
+            # microsoft-edge
+            brave
+
             anki
             telegram-desktop
-            microsoft-edge
             drawio
             kdePackages.kdeconnect-kde
             cloudflare-warp
@@ -152,11 +154,11 @@ in {
             tree-sitter             # Parser generator tool
       ];
 
-      home.file = {
-            # ".config/hypr/hyprland.conf" = {
-            #       source = ./hyprland/hyprland.conf;
-            # };
-      };
+      home.file.".config/kwalletrc".text = ''
+            [Wallet]
+            First Use=false
+            Enabled=false
+      '';
 
       home.sessionVariables = {
             XCURSOR_THEME = "Bibata-Modern-Ice";

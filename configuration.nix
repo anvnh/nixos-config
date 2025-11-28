@@ -110,6 +110,8 @@
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.sddm.enableGnomeKeyring = true;
 
+      environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
+
       # Enable Hyprland and setup
       programs.hyprland = {
             enable = true;
@@ -207,14 +209,6 @@
             direnv
             nix-direnv
             networkmanagerapplet
-            # catppuccin-sddm.override {
-            #       flavor = "mocha";
-            #       accent = "mauve";
-            #       font  = "Noto Sans";
-            #       fontSize = "14";
-            #       # background = "${./wallpaper.png}";
-            #       loginBackground = true;
-            # }
             catppuccin-sddm
       ];
       programs.direnv.enable = true;
