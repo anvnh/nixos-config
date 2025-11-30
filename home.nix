@@ -33,6 +33,7 @@ in {
             brightnessctl # brightness control
             powertop
             gammastep # nightlight
+            hyprlock # lock screen
 
             #========================================
             # GUI Applications
@@ -382,6 +383,9 @@ in {
                   enable = true;
                   oh-my-zsh.enable = false;
 
+                  # syntaxHighlighting.enable = false;
+                  # autosuggestion.enable = false;
+
                   initContent = ''
                         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
                         [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
@@ -433,18 +437,24 @@ in {
                                       print -z "$command"
                               fi
                         }
+                        bindkey -v
+                        bindkey "^?" backward-delete-char
+                        bindkey "^H" backward-delete-char
+                        bindkey -M viins "^W" backward-kill-word
+                        bindkey -M viins "^?" backward-delete-char
+                        bindkey -M viins "^H" backward-delete-char
                         bindkey -r "^E"
                         bindkey "^E" autosuggest-accept
                         bindkey '^P' up-line-or-history
                         bindkey '^N' down-line-or-history
                         bindkey '^A' beginning-of-line
                   '';
+                  history.size = 10000;
                   syntaxHighlighting.enable = true;
                   autosuggestion.enable = true;
-                  history.size = 10000;
                   shellAliases = {
                         # nrs = "sudo nixos-rebuild switch";
-                        nrs = "sudo nixos-rebuild switch --flake .#vnhantyn";
+                        nrs = "sudo nixos-rebuild switch --flake .#vnhantyn && exec zsh";
                         ncg = "sudo nix-collect-garbage -d";
                         sn = "shutdown now";
                         rb = "reboot";
