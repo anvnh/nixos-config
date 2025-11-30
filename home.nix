@@ -34,6 +34,7 @@ in {
             powertop
             gammastep # nightlight
             hyprlock # lock screen
+            hypridle # lock screen if idle
 
             #========================================
             # GUI Applications
