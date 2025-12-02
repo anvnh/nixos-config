@@ -212,12 +212,16 @@
             nix-direnv
             networkmanagerapplet
             catppuccin-sddm
+            udiskie
       ];
       programs.direnv.enable = true;
       programs.direnv.nix-direnv.enable = true;
 
       # Steam
       programs.steam.enable = true;
+
+      services.udisks2.enable = true;
+      services.gvfs.enable = true;
 
       # Automatically clear garbages
       nix.gc = {

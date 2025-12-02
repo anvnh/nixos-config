@@ -45,6 +45,9 @@ in {
             brave
 
             anki
+            joplin-desktop
+            neovide
+
             telegram-desktop
             drawio
             kdePackages.kdeconnect-kde
