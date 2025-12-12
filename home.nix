@@ -10,6 +10,7 @@ in {
 
       home.packages = with pkgs; [
             devenv
+            sqlitebrowser
 
             # Science Research Tools
             zotero
@@ -18,6 +19,7 @@ in {
             # Hyprland Specific Packages
             #========================================
             waybar
+            pkgs-unstable.quickshell # quickshell > wayland for real!
             rofi
             mako libnotify # Notification
             swww # Wallpaper
@@ -35,6 +37,7 @@ in {
             gammastep # nightlight
             hyprlock # lock screen
             hypridle # lock screen if idle
+            playerctl # media control
 
             #========================================
             # GUI Applications
@@ -77,6 +80,10 @@ in {
             #========================================
             # CLI Utilities (Modern Replacements)
             #========================================
+            krabby          # Pokemon
+            fastfetch       # System info
+
+            ninja
             pkgs-unstable.geminicommit    # Gemini commit
             ranger
             tree
@@ -104,6 +111,7 @@ in {
             #========================================
             # Development Environment
             #========================================
+
             #--- Editors & IDEs ---#
             # neovim
             vscode
@@ -123,6 +131,7 @@ in {
             gnumake
             cargo           # Rust package manager
             pnpm            # JS package manager
+            yarn            # JS package manager
             android-tools   # ADB, fastboot
 
             #--- LSPs, Formatters & Linters ---#
@@ -130,11 +139,14 @@ in {
             clang-tools     # Includes clangd, clang-format
 
             # Rust
-            rust-analyzer
-            rustfmt
+            rustfmt         # Rust formatter
+            rust-analyzer   # Rust LSP
 
             # Nix
             nixd # LSP
+
+            # Qt/QML
+            qt6.qtdeclarative # For qml-language-server
 
             # Lua
             lua-language-server
@@ -396,25 +408,32 @@ in {
                         eval "$(direnv hook zsh)"
 
                         function nix-init() {
-                              # Check if files already exist to avoid overwriting
-                              if [ -f "shell.nix" ] || [ -f ".envrc" ] || [ -f ".editorconfig" ]; then
-                                    echo "Error: One or more files (shell.nix, .envrc, .editorconfig) already exist."
-                                    return 1
-                              fi
+                            # === 1. Check & Create shell.nix ===
+                            if [ ! -f "shell.nix" ]; then
+                                echo -e "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  # --- Project-specific Commands (Aliases) ---\n\n  # Example for a local binary (using a relative path):\n  my-cmd = pkgs.writeShellScriptBin \"my-cmd\" '''\n    #!/usr/bin/env bash\n    # This path is relative. It will only work if you\n    # run \`my-cmd\` from the same directory as shell.nix\n    exec \"./path/to/your/binary\" \"\${"$"}\@\"\n  ''';\n\n  # Example for a simple alias:\n  run = pkgs.writeShellScriptBin \"run\" '''\n    #!/usr/bin/env bash\n    echo \"Run command here\"\n    # Example: exec pnpm run dev \"\${"$"}\@\"\n  ''';\n\nin\npkgs.mkShell {\n  # --- Nix Dependencies ---\n  packages = [\n    # Add Nix dependencies here\n    # pkgs.nodejs\n    # pkgs.cowsay\n\n    # --- Add your commands ---\n    my-cmd\n    run\n  ];\n\n  # --- Environment Variables ---\n  shellHook = '''\n    echo \"✨ Environment activated.\"\n    export HELLO=\"world\"\n  ''';\n}" > shell.nix
+                                echo "✅ Created shell.nix"
+                            else
+                                echo "⏩ shell.nix already exists. Skipping."
+                            fi
 
-                              # === Create shell.nix ===
-                              # echo -e "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  # --- Project-specific Commands (Aliases) ---\n\n  build-cmd = pkgs.writeShellScriptBin \"build\" '''\n    #!/usr/bin/env bash\n    echo \"Build command here\"\n    # Example: exec pnpm run build \"\${"$"}\@\"\n  ''';\n\n  run-cmd = pkgs.writeShellScriptBin \"run\" '''\n    #!/usr/bin/env bash\n    echo \"Run command here\"\n    # Example: exec pnpm run dev \"\${"$"}\@\"\n  ''';\n\nin\npkgs.mkShell {\n  # --- Nix Dependencies ---\n  packages = [\n    # Add your dependencies here\n    # Example: pkgs.nodejs\n\n    # --- Add your commands ---\n    build-cmd\n    run-cmd\n  ];\n\n  # --- Environment Variables ---\n  shellHook = '''\n    echo \"✨ Environment activated.\"\n    export HELLO=\"world\"\n  ''';\n}" > shell.nix
-                              echo -e "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  # --- Project-specific Commands (Aliases) ---\n\n  # Example for a local binary (using a relative path):\n  my-cmd = pkgs.writeShellScriptBin \"my-cmd\" '''\n    #!/usr/bin/env bash\n    # This path is relative. It will only work if you\n    # run `my-cmd` from the same directory as shell.nix\n    exec \"./path/to/your/binary\" \"\${"$"}\@\"\n  ''';\n\n  # Example for a simple alias:\n  run = pkgs.writeShellScriptBin \"run\" '''\n    #!/usr/bin/env bash\n    echo \"Run command here\"\n    # Example: exec pnpm run dev \"\${"$"}\@\"\n  ''';\n\nin\npkgs.mkShell {\n  # --- Nix Dependencies ---\n  packages = [\n    # Add Nix dependencies here\n    # pkgs.nodejs\n    # pkgs.cowsay\n\n    # --- Add your commands ---\n    my-cmd\n    run\n  ];\n\n  # --- Environment Variables ---\n  shellHook = '''\n    echo \"✨ Environment activated.\"\n    export HELLO=\"world\"\n  ''';\n}" > shell.nix
+                            # === 2. Check & Create .envrc ===
+                            if [ ! -f ".envrc" ]; then
+                                echo -e "use nix" > .envrc
+                                echo "✅ Created .envrc"
+                            else
+                                echo "⏩ .envrc already exists. Skipping."
+                            fi
 
-                              # === Create .envrc ===
-                              echo -e "use nix" > .envrc
+                            # === 3. Check & Create .editorconfig ===
+                            if [ ! -f ".editorconfig" ]; then
+                                echo -e "root = true\n\n[*]\nindent_style = space\nindent_size = 6\nend_of_line = lf\ncharset = utf-8\ntrim_trailing_whitespace = true\ninsert_final_newline = true\n\n[*.{nix}]\nindent_style = space\nindent_size = 2\ninsert_final_newline = true\ncharset = utf-8\ntrim_trailing_whitespace = true\nend_of_line = lf" > .editorconfig
+                                echo "✅ Created .editorconfig"
+                            else
+                                echo "⏩ .editorconfig already exists. Skipping."
+                            fi
 
-                              # === Create .editorconfig ===
-                              # echo -e "root = true\n\n[*]\nindent_style = space\nindent_size = 6\nend_of_line = lf\ncharset = utf-8\ntrim_trailing_whitespace = true\ninsert_final_newline = true" > .editorconfig
-                              echo -e "root = true\n\n[*]\nindent_style = space\nindent_size = 6\nend_of_line = lf\ncharset = utf-8\ntrim_trailing_whitespace = true\ninsert_final_newline = true\n\n[*.{nix}]\nindent_style = space\nindent_size = 2\ninsert_final_newline = true\ncharset = utf-8\ntrim_trailing_whitespace = true\nend_of_line = lf" > .editorconfig
-
-                              echo "Created 3 files: shell.nix, .envrc, .editorconfig"
-                              echo "Run 'direnv allow' to activate the environment"
+                            echo "------------------------------------------------"
+                            echo "Done. Run 'direnv allow' to activate the environment."
                         }
 
                         function githelp() {
@@ -452,6 +471,8 @@ in {
                         bindkey '^P' up-line-or-history
                         bindkey '^N' down-line-or-history
                         bindkey '^A' beginning-of-line
+
+                        fastfetch
                   '';
                   history.size = 10000;
                   syntaxHighlighting.enable = true;

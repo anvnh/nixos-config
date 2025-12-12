@@ -3,18 +3,13 @@
 
       inputs = {
             # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-            nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+            nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
             nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-            # Zen browser
-            # zen-browser.url = "github:0xc000022070/zen-browser-flake";
-            # zen-browser.inputs.nixpkgs.follows = "nixpkgs";
-            # zen-browser.inputs.home-manager.follows = "home-manager";
-
             home-manager = {
                   # url = "github:nix-community/home-manager";
-                  url = "github:nix-community/home-manager/release-25.05";
+                  url = "github:nix-community/home-manager/release-25.11";
                   inputs.nixpkgs.follows = "nixpkgs";
             };
       };
@@ -23,7 +18,6 @@
             nixosConfigurations.vnhantyn = nixpkgs.lib.nixosSystem {
                   system = "x86_64-linux";
                   specialArgs = { inherit inputs; }; # Makes inputs available to other files
-
                   modules = [
                         ./configuration.nix
 

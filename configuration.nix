@@ -10,7 +10,7 @@
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
       # boot.loader.grub.configurationLimit = 10; # Limit generation display in grub
-      boot.loader.systemd-boot.configurationLimit = 5;
+      boot.loader.systemd-boot.configurationLimit = 9;
 
       # Network
       networking.hostName = "nixos-nvhantyn"; # Define your hostname.
@@ -70,7 +70,8 @@
             fcitx5 = {
                   waylandFrontend = true;
                   addons = with pkgs; [
-                        fcitx5-unikey
+                        # fcitx5-unikey
+                        qt6Packages.fcitx5-unikey
                   ];
             };
       };
@@ -98,9 +99,7 @@
             enable = true;
             wayland.enable = true;
             package = pkgs.kdePackages.sddm;
-            theme = "catppuccin-mocha";
-            # package = pkgs.kdePackages.sddm;
-            # theme = "catppuccin-mocha-mauve";
+            theme = "catppuccin-mocha-mauve";
       };
 
       # Disable Plasma 6
@@ -166,7 +165,7 @@
       users.users.vnhantyn = {
             isNormalUser = true;
             description = "vnhantyn";
-            extraGroups = [ "networkmanager" "wheel"];
+            extraGroups = [ "networkmanager" "wheel" "adbusers"];
             shell = pkgs.zsh;
             packages = with pkgs; [
                   kdePackages.kate
@@ -180,7 +179,6 @@
 
       # SDK
       programs.adb.enable = true;
-      services.udev.packages = [ pkgs.android-udev-rules ];
 
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;
