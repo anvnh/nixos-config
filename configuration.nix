@@ -76,6 +76,8 @@
             };
       };
 
+      qt.enable = true;
+
       # Font
       fonts.packages = with pkgs; [
             nerd-fonts.fira-code
@@ -111,7 +113,15 @@
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.sddm.enableGnomeKeyring = true;
 
-      environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
+      environment.variables = {
+            XDG_RUNTIME_DIR = "/run/user/$UID";
+            QML2_IMPORT_PATH = let
+                  qtBase = pkgs.qt6.qtdeclarative;
+                  quickShell = pkgs.quickshell;
+                  qtWayland = pkgs.qt6.qtwayland;
+            in
+                  "${qtBase}/lib/qt-6/qml:${quickShell}/lib/qt-6/qml:${qtWayland}/lib/qt-6/qml";
+      };
 
       # Enable Hyprland and setup
       programs.hyprland = {
@@ -211,6 +221,10 @@
             networkmanagerapplet
             catppuccin-sddm
             udiskie
+
+            qt6.qtdeclarative
+            qt6.qtwayland
+            quickshell
       ];
       programs.direnv.enable = true;
       programs.direnv.nix-direnv.enable = true;

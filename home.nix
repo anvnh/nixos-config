@@ -19,7 +19,7 @@ in {
             # Hyprland Specific Packages
             #========================================
             waybar
-            pkgs-unstable.quickshell # quickshell > wayland for real!
+            # pkgs-unstable.quickshell # quickshell > wayland for real!
             rofi
             mako libnotify # Notification
             swww # Wallpaper
@@ -146,7 +146,8 @@ in {
             nixd # LSP
 
             # Qt/QML
-            qt6.qtdeclarative # For qml-language-server
+            # qt6.qtdeclarative # For qml-language-server
+            # qt6Packages.qtdeclarative
 
             # Lua
             lua-language-server
