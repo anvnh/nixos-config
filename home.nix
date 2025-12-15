@@ -290,7 +290,7 @@ in {
             git = {
                   enable = true;
                   userName = "anvnh";
-                  userEmail = "anvo20052@gmail.com";
+                  userEmail = "73346280+anvnh@users.noreply.github.com";
                   delta = {
                         enable = true;
                         options = {
