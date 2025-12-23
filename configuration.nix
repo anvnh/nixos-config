@@ -10,7 +10,7 @@
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
       # boot.loader.grub.configurationLimit = 10; # Limit generation display in grub
-      boot.loader.systemd-boot.configurationLimit = 9;
+      boot.loader.systemd-boot.configurationLimit = 5;
 
       # Network
       networking.hostName = "nixos-nvhantyn"; # Define your hostname.

@@ -16,6 +16,11 @@ in {
             zotero
 
             #========================================
+            # Gaming
+            #========================================
+            qbittorrent
+
+            #========================================
             # Hyprland Specific Packages
             #========================================
             waybar
@@ -38,6 +43,19 @@ in {
             hyprlock # lock screen
             hypridle # lock screen if idle
             playerctl # media control
+
+            nwg-look # theme manager
+            (catppuccin-gtk.override {
+                  accents = [ "blue" "lavender" ];
+                  variant = "mocha";
+            })
+            # (whitesur-gtk-theme.override {
+            #       themeVariants = [ "default" ];
+            #       altVariants = [ "normal" "alt" ];
+            #       colorVariants = [ "light" "dark" ];
+            #       opacityVariants = [ "normal" "solid" ];
+            # })
+            nordic
 
             #========================================
             # GUI Applications
@@ -182,6 +200,7 @@ in {
       home.sessionVariables = {
             XCURSOR_THEME = "Bibata-Modern-Ice";
             XCURSOR_SIZE = "24";
+            RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
       };
 
       # xdg.configFile."waybar/config.jsonc".source = ./config/waybar/config.jsonc;
@@ -315,7 +334,7 @@ in {
                                     family = "FiraCode Nerd Font";
                                     style = "Regular";
                               };
-                              size = 13;
+                              size = 11.5;
                         };
                         window = {
                               dynamic_padding = true;
