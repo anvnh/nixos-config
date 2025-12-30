@@ -6,13 +6,11 @@ STEP=500
 MIN_TEMP=1500
 MAX_TEMP=6500
 
-# Hàm notify
 notify_user() {
       notify-send -h string:x-canonical-private-synchronous:nightshift \
             -u low -t 2000 "Night Shift Control" "$1"
       }
 
-# Lấy nhiệt độ hiện tại
 if [ -f "$TEMP_FILE" ]; then
       CURRENT=$(cat "$TEMP_FILE")
 else

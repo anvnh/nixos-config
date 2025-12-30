@@ -39,7 +39,7 @@ in {
             pavucontrol # audio control
             brightnessctl # brightness control
             powertop
-            gammastep # nightlight
+            gammastep hyprsunset # nightlight
             hyprlock # lock screen
             hypridle # lock screen if idle
             playerctl # media control
@@ -64,7 +64,7 @@ in {
             # inputs.zen-browser.packages."${pkgs.system}".default # Zen browser
             # microsoft-edge
             brave
-
+            ente-auth
             anki
             joplin-desktop
             neovide
@@ -133,6 +133,7 @@ in {
             #--- Editors & IDEs ---#
             # neovim
             vscode
+            antigravity
             # jetbrains.clion
             # pkgs-unstable.jetbrains.webstorm
 
