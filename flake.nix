@@ -4,8 +4,8 @@
       inputs = {
             # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
             nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-
             nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+            spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
             home-manager = {
                   # url = "github:nix-community/home-manager";

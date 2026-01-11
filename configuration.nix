@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
       imports =
             [ # Include the results of the hardware scan.
                   ./hardware-configuration.nix
+                  inputs.spicetify-nix.nixosModules.default
             ];
 
       # Bootloader.
@@ -226,7 +227,24 @@
             qt6.qtdeclarative
             qt6.qtwayland
             quickshell
+
+            spotify
       ];
+      # Setup spicetify
+      programs.spicetify =
+            let
+                  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+            in
+                  {
+                  enable = true;
+                  theme = spicePkgs.themes.catppuccin;
+                  colorScheme = "mocha";
+
+                  enabledCustomApps = with spicePkgs.apps; [
+                        marketplace
+                  ];
+            };
+
       programs.direnv.enable = true;
       programs.direnv.nix-direnv.enable = true;
 

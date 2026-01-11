@@ -75,7 +75,9 @@ in {
             vlc
             libreoffice
             obsidian
-            todoist-electron
+            # todoist-electron
+            ticktick
+            signal-desktop
 
             #--- Utilities ---#
             solaar          # Logitech management
