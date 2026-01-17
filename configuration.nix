@@ -51,10 +51,10 @@
       # networking.proxy.default = "http://user:password@proxy:port/";
       # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-      systemd.network.links."10-usb-wifi" = {
-            matchConfig.MACAddress = "a8:6e:84:46:a0:20";
-            linkConfig.Name = "wlan0";
-      };
+      # systemd.network.links."10-usb-wifi" = {
+      #       matchConfig.MACAddress = "a8:6e:84:46:a0:20";
+      #       linkConfig.Name = "wlan0";
+      # };
 
       # Enable networking
       networking.networkmanager.enable = true;
