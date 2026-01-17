@@ -166,7 +166,6 @@
 
       hardware = {
             graphics.enable = true;
-            # nvidia.modesetting.enable = true;
       };
 
       # Enable touchpad support (enabled default in most desktopManager).
@@ -205,7 +204,7 @@
       hardware.logitech.wireless.enableGraphical = true;
 
       # Enable waydroid
-      virtualisation.waydroid.enable = true;
+      # virtualisation.waydroid.enable = true;
 
       # List packages installed in system profile. To search, run:
       # $ nix search wget
