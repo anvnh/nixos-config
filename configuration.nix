@@ -112,8 +112,8 @@
       programs.kdeconnect.enable = true;
 
       # Enable Gnome Keyring for password management
-      services.gnome.gnome-keyring.enable = true;
-      security.pam.services.sddm.enableGnomeKeyring = true;
+      # services.gnome.gnome-keyring.enable = true;
+      # security.pam.services.sddm.enableGnomeKeyring = true;
 
       environment.variables = {
             XDG_RUNTIME_DIR = "/run/user/$UID";
