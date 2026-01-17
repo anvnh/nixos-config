@@ -16,48 +16,39 @@ in {
             zotero
 
             #========================================
-            # Hyprland Specific Packages
+            # Hyprland Packages
             #========================================
-            waybar
-            # pkgs-unstable.quickshell # quickshell > wayland for real!
-            rofi
+            # waybar
+            # pkgs-unstable.quickshell
+            # rofi
             mako libnotify # Notification
-            swww # Wallpaper
-            grim
-            slurp
-            bibata-cursors
-            xfce.thunar # file manager
-            xfce.tumbler ffmpegthumbnailer gdk-pixbuf # thumbnailers for thunar
+            # swww # Wallpaper
+            # grim
+            # slurp
+            # bibata-cursors
+            # xfce.thunar # file manager
+            # xfce.tumbler ffmpegthumbnailer gdk-pixbuf # thumbnailers for thunar
             sxiv # image viewer
             cliphist
-            sway-contrib.grimshot
-            pavucontrol # audio control
-            brightnessctl # brightness control
-            powertop
-            gammastep hyprsunset # nightlight
-            hyprlock # lock screen
-            hypridle # lock screen if idle
-            playerctl # media control
-
+            # sway-contrib.grimshot
+            # pavucontrol # audio control
+            # brightnessctl # brightness control
+            # powertop
+            # gammastep hyprsunset # nightlight
+            # hyprlock # lock screen
+            # hypridle # lock screen if idle
+            # hyprpicker
+            # playerctl # media control
+            imagemagick
             nwg-look # theme manager
-            (catppuccin-gtk.override {
-                  accents = [ "blue" "lavender" ];
-                  variant = "mocha";
-            })
-            # (whitesur-gtk-theme.override {
-            #       themeVariants = [ "default" ];
-            #       altVariants = [ "normal" "alt" ];
-            #       colorVariants = [ "light" "dark" ];
-            #       opacityVariants = [ "normal" "solid" ];
+            # (catppuccin-gtk.override {
+            #       accents = [ "blue" "lavender" ];
+            #       variant = "mocha";
             # })
             nordic
 
-            #========================================
             # GUI Applications
-            #========================================
-            #--- Communication & Internet ---#
             # inputs.zen-browser.packages."${pkgs.system}".default # Zen browser
-            # microsoft-edge
             brave
             ente-auth
             anki
@@ -75,8 +66,8 @@ in {
             vlc
             libreoffice
             obsidian
-            # todoist-electron
             ticktick
+            onedrive
             signal-desktop
 
             #--- Utilities ---#
@@ -88,6 +79,7 @@ in {
             # Terminal & Shell Core
             #========================================
             alacritty       # Terminal Emulator
+            ghostty
             zsh             # Shell
             tmux            # Terminal Multiplexer
             ncurses         # Terminal UI library
@@ -95,7 +87,7 @@ in {
             #========================================
             # CLI Utilities (Modern Replacements)
             #========================================
-            krabby          # Pokemon
+            # krabby          # Pokemon
             fastfetch       # System info
 
             ninja
@@ -161,10 +153,6 @@ in {
             # Nix
             nixd # LSP
 
-            # Qt/QML
-            # qt6.qtdeclarative # For qml-language-server
-            # qt6Packages.qtdeclarative
-
             # Lua
             lua-language-server
             stylua
@@ -195,18 +183,18 @@ in {
             Enabled=false
       '';
 
-      home.sessionVariables = {
-            XCURSOR_THEME = "Bibata-Modern-Ice";
-            XCURSOR_SIZE = "24";
-            RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-      };
+      # home.sessionVariables = {
+      #       XCURSOR_THEME = "Bibata-Modern-Ice";
+      #       XCURSOR_SIZE = "24";
+      #       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+      # };
 
       # xdg.configFile."waybar/config.jsonc".source = ./config/waybar/config.jsonc;
       # xdg.configFile."waybar/config.jsonc".source = inputs.self + "/config/waybar/config.jsonc";
       # xdg.configFile."waybar/style.css".source = inputs.self + "/config/waybar/style.css";
-      home.file.".config/waybar".source = ./config/waybar;
-      home.file.".config/rofi".source = ./config/rofi;
-      home.file.".config/hypr".source = ./config/hypr;
+      # home.file.".config/waybar".source = ./config/waybar;
+      # home.file.".config/rofi".source = ./config/rofi;
+      # home.file.".config/hypr".source = ./config/hypr;
       # home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/vnhantyn/nixos-config/config/hypr";
       home.file.".config/.cheatsheet".source = ./config/cheatsheet;
       home.file.".config/.gitcommit".source = ./config/gitcommit;
@@ -222,9 +210,10 @@ in {
                   "border-radius" = 8;
                   "default-timeout" = 5000;
 
-                  "background-color" = "#1e1e2e60";
-                  "text-color" = "#cdd6f4";
-                  "border-color" = "#89b4fa"; # Mặc định
+                  "background-color" = "#1e1e2e";
+                  # "text-color" = "#cdd6f4";
+                  "text-color" = "#ffffff";
+                  "border-color" = "#89b4fa";
                   "progress-color" = "over #313244";
                   "urgency=high" = {
                         "border-color" = "#fab387";

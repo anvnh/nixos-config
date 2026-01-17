@@ -23,12 +23,13 @@
 
       # Bluetooth
       hardware.bluetooth.enable = true;
+      hardware.bluetooth.powerOnBoot = false;
       # services.blueman.enable = true;
 
 
       # TLP
       services.tlp = {
-            enable = true;
+            enable = false;
             settings = {
                   START_CHARGE_THRESH_BAT0 = 60;
                   STOP_CHARGE_THRESH_BAT0 = 60;
@@ -37,7 +38,7 @@
                   # STOP_CHARGE_THRESH_BAT1 = 80;
             };
       };
-      services.power-profiles-daemon.enable = false; # Disable default daemon
+      services.power-profiles-daemon.enable = true; # Disable default daemon
 
       # Optimize battery life
       # services.udev.extraRules = ''
@@ -102,12 +103,11 @@
       services.displayManager.sddm = {
             enable = true;
             wayland.enable = true;
-            package = pkgs.kdePackages.sddm;
+            # package = pkgs.kdePackages.sddm; # Uncomment if install plasma
             theme = "catppuccin-mocha-mauve";
       };
 
-      # Disable Plasma 6
-      services.desktopManager.plasma6.enable = false;
+      services.desktopManager.plasma6.enable = true;
 
       programs.kdeconnect.enable = true;
 
@@ -125,14 +125,13 @@
                   "${qtBase}/lib/qt-6/qml:${quickShell}/lib/qt-6/qml:${qtWayland}/lib/qt-6/qml";
       };
 
-      # Enable Hyprland and setup
-      programs.hyprland = {
-            enable = true;
-            xwayland.enable = true;
-      };
-
-      xdg.portal.enable = true;
-      xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      # Hyprland
+      # programs.hyprland = {
+      #       enable = true;
+      #       xwayland.enable = true;
+      # };
+      # xdg.portal.enable = true;
+      # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
       # Configure keymap
       services.xserver = {
