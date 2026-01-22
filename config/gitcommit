@@ -1,10 +1,10 @@
 # <type>(<scope>): <subject>
-# |      |         |
-# |      |         +-> Subject: Short description (50 char max). Not capitalized. No period.
-# |      |
-# |      +-> Scope (Optional): What part of the codebase? (e.g., "api", "ui", "parser")
-# |
-# +-> Type: What kind of change? (See list below)
+# │      │         │
+# │      │         └──Subject: Short description (50 char max). Not capitalized. No period.
+# │      │
+# │      └──Scope (Optional): What part of the codebase? (e.g., "api", "ui", "parser")
+# │
+# └──Type: What kind of change? (See list below)
 #
 
 # --- Types ---
